@@ -1,0 +1,32 @@
+{
+    "name": "lotarbo/meta-tags",
+    "description": "meta tags",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bogdan Lotarev",
+            "email": "bogdanlotar@gmail.com",
+            "homepage": "https://github.com/lotarbo/"
+        }
+    ],
+    "homepage": "https://github.com/lotarbo/meta-tags",
+    "keywords": ["Meta Tags","MetaTags","Laravel", "OG", "Open Graph"],
+    "require": {
+        "php": "7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lotarbo\\MetaTags\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lotarbo\\MetaTags\\MetaTagsServiceProvider"
+            ],
+            "aliases": {
+                "MetaTags": "Lotarbo\\MetaTags\\Facades\\MetaTags"
+            }
+        }
+    }
+}
