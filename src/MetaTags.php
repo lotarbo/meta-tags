@@ -5,11 +5,13 @@ namespace Lotarbo\MetaTags;
 use Lotarbo\MetaTags\Objects\Description;
 use Lotarbo\MetaTags\Objects\Image;
 use Lotarbo\MetaTags\Objects\Title;
+use Lotarbo\MetaTags\Traits\DescriptionTrait;
+use Lotarbo\MetaTags\Traits\TitleTrait;
 
 class MetaTags
 {
-    protected $title;
-    protected $description;
+    use TitleTrait, DescriptionTrait;
+
     protected $url;
     protected $image;
     protected $options = [];
@@ -25,17 +27,8 @@ class MetaTags
     public function setOptions($options): self
     {
         $this->options = array_merge($this->options, $options);
-        if (isset($options['title']['default'])) {
-            $this->setTitle($options['title']['default']);
-        }
 
-        if (isset($options['title']['prefix'])) {
-            $this->setTitlePrefix($options['title']['prefix']);
-        }
-
-        if (isset($options['title']['prefix_separator'])) {
-            $this->setTitlePrefixSeparator($options['title']['prefix_separator']);
-        }
+        $this->setTitleOptions($options);
 
         if (isset($options['image']['src'])) {
             $this->image(
@@ -53,51 +46,11 @@ class MetaTags
         return $this->setTitle($title);
     }
 
-    public function setTitle($title): self
-    {
-        $this->title->setValue($title);
-        return $this;
-    }
-
-    public function setTitlePrefix($titlePrefix): self
-    {
-        $this->title->setPrefix($titlePrefix);
-        return $this;
-    }
-
-    public function setTitlePrefixSeparator($titlePrefixSeparator): self
-    {
-        $this->title->setPrefixSeparator($titlePrefixSeparator);
-        return $this;
-    }
-
-    public function setTitlePostfix($titlePostfix): self
-    {
-        $this->title->setPostfix($titlePostfix);
-        return $this;
-    }
-
-    public function setTitlePostfixSeparator($titlePostfixSeparator): self
-    {
-        $this->title->setPostfixSeparator($titlePostfixSeparator);
-        return $this;
-    }
-
     public function description($description): self
     {
         return $this->setDescription($description);
     }
 
-    public function setDescription($description): self
-    {
-        $this->description->setValue($description);
-        return $this;
-    }
-
-    public function getDescription()
-    {
-        return $this->description->getDescription();
-    }
 
     public function url($url): self
     {

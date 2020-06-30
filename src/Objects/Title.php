@@ -1,4 +1,5 @@
 <?php
+
 namespace Lotarbo\MetaTags\Objects;
 
 use Lotarbo\MetaTags\Utils;
@@ -6,6 +7,7 @@ use Lotarbo\MetaTags\Utils;
 class Title
 {
     protected $value;
+    protected $length = 160;
     protected $prefix;
     protected $prefixSeparator;
     protected $postfix;
@@ -76,16 +78,28 @@ class Title
         return $this;
     }
 
-    public function buildTitle()
+    public function getLength(): ?int
+    {
+        return $this->length;
+    }
+
+    public function setLength(?int $length): self
+    {
+        $this->length = $length;
+        return $this;
+    }
+
+    protected function buildTitle()
     {
         $title = $this->value;
         if ($this->prefix) {
             $title = sprintf('%s%s%s', $this->prefix, $this->prefixSeparator, $title);
         }
-        if ($this->postfix)
-        {
+        if ($this->postfix) {
             $title = sprintf('%s%s%s', $title, $this->postfixSeparator, $this->postfix);
         }
+
+        $title = Utils::cut($title, $this->length);
 
         return $title;
     }

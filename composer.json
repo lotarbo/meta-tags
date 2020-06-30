@@ -12,7 +12,8 @@
     "homepage": "https://github.com/lotarbo/meta-tags",
     "keywords": ["Meta Tags","MetaTags","Laravel", "OG", "Open Graph"],
     "require": {
-        "php": "7.*"
+        "php": "^7.2",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": {
