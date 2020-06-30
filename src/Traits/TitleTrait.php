@@ -17,6 +17,11 @@ trait TitleTrait
         return $this;
     }
 
+    public function getTitle(): ?string
+    {
+        return $this->title->getTitle();
+    }
+
     public function setTitlePrefix($titlePrefix): self
     {
         $this->title->setPrefix($titlePrefix);
